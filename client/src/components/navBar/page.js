@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {Navbar, NavbarBrand,Button,NavbarContent, NavbarItem, Input, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar} from "@nextui-org/react";
  import Link from 'next/link'

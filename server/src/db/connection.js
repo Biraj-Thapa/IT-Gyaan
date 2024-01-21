@@ -6,7 +6,8 @@
       if(isConnected){
         console.log("connected  to mongodb")
      }
- }catch(err) {console.log(err)
+ }catch(err) {
+  console.log(err)
 }
 
 }
