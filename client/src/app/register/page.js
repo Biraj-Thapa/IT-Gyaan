@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useFormik } from "formik";
-import Layot from "@/components/layout/page";
+import Layout from "@/components/layout/page";
 import { Input } from "@nextui-org/react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
@@ -48,7 +48,7 @@ const SignupForm = () => {
     },
   });
   return (
-    <Layot>
+    <Layout>
       <h2 className="text-center text-2xl font-bold mt-5 mb-3">
         Create an account
       </h2>
@@ -119,7 +119,7 @@ const SignupForm = () => {
           </button>
         </form>
       </div>
-    </Layot>
+    </Layout>
   );
 };
 
