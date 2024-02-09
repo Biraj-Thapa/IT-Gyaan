@@ -1,79 +1,62 @@
 "use client"
 import React from "react";
-import {Navbar, NavbarBrand,Button,NavbarContent, NavbarItem, Input, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar} from "@nextui-org/react";
- import Link from 'next/link'
+import { Navbar, NavbarBrand, Button, NavbarContent, Input, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu } from "@nextui-org/react";
+import Link from 'next/link';
+import { FaSearch } from 'react-icons/fa';
 
 export default function App() {
   return (
-    <Navbar isBordered>
-      <NavbarContent justify="start">
-        <NavbarBrand className="mr-4">
-         
-          <p className="hidden sm:block font-bold text-inherit">IT-Gyaan</p>
+    <Navbar isBordered className="bg-gray-900 text-white">
+      <NavbarContent justify="between" className="container mx-auto py-4">
+        <NavbarBrand>
+          <p className="font-bold text-2xl">IT-Gyaan</p>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-3">
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link href="#" aria-current="page" color="secondary">
-              Customers
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-      </NavbarContent>
 
-      <NavbarContent as="div" className="items-center" justify="end">
-        <Input
-          classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          
-          placeholder="Type to search..."
-          size="sm"
-          type="search"
-        />
-        <Button as={Link} href='/register'>Register</Button>
-        <Button as={Link} href='/login'>Login</Button>
-        <Button as={Link} href="/editor">Write</Button>
-        <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="secondary"
-              name="Jason Hughes"
+        <div className="flex items-center">
+          <div className="relative">
+            <Input
+              classNames={{
+                base: "w-64 h-10 pl-10 pr-3",
+                inputWrapper: "h-full font-normal text-black bg-gray-200 dark:bg-gray-800 dark:text-white",
+              }}
+              placeholder="Search..."
               size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              type="search"
             />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Signed in as</p>
-              <p className="font-semibold">zoey@example.com</p>
-            </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
-            <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
-            <DropdownItem key="system">System</DropdownItem>
-            <DropdownItem key="configurations">Configurations</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-            <DropdownItem key="logout" color="danger">
-              Log Out
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+            <button className="absolute inset-y-0 right-0 px-3 flex items-center">
+              <FaSearch className="h-5 w-5 text-gray-500" />
+            </button>
+          </div>
+          
+          <Button as={Link} href='/register' className="mx-2 bg-blue-500 hover:bg-blue-600">Register</Button>
+          <Button as={Link} href='/login' className="mx-2 bg-blue-500 hover:bg-blue-600">Login</Button>
+          <Button as={Link} href="/editor" className="mx-2 bg-blue-500 hover:bg-blue-600">Write</Button>
+          <Dropdown placement="bottom-end">
+            <DropdownTrigger>
+              <Button>
+                <img
+                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                  alt="Avatar"
+                  className="w-8 h-8 rounded-full"
+                />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem key="profile" className="h-14 gap-2">
+                <p className="font-semibold">Signed in as</p>
+                <p className="font-semibold">zoey@example.com</p>
+              </DropdownItem>
+              <DropdownItem key="Profile">Profile</DropdownItem>
+              <DropdownItem key="Library">Library</DropdownItem>
+              <DropdownItem key="analytics">Analytics</DropdownItem>
+              <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+              <DropdownItem key="settings">Settings</DropdownItem>
+              <DropdownItem key="logout" color="danger">
+                Log Out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
       </NavbarContent>
     </Navbar>
   );
