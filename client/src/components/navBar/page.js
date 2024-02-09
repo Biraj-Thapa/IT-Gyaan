@@ -45,6 +45,7 @@ export default function App() {
         />
         <Button as={Link} href='/register'>Register</Button>
         <Button as={Link} href='/login'>Login</Button>
+        <Button as={Link} href="/editor">Write</Button>
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar

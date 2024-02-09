@@ -7,9 +7,9 @@ IT-Gyaan contains Blog articles regarding different topics about IT like AI,Cybe
 
 ## Tech Stack
 
-**Client:** Nextjs, Redux,TailwindCSS
+**Client:** Nextjs, Redux,TailwindCSS,formik,yup,react-toastify,nextui
 
-**Server:** Node,Express
+**Server:** Node,Express,becrypt
 
 **Database:** MongoDB
 
