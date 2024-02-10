@@ -1,9 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
 import {countSlice} from './reducerSlice/countSlice'
+import userReducer from "./reducerSlice/userSlice"
+import logger from "redux-logger"
 
 export default configureStore({
   reducer: {
-    count:countSlice
-  }
+    count:countSlice,
+    user: userReducer
+  },
+  middeleware:()=>[logger]
     
 });
