@@ -25,7 +25,7 @@ const registerNewUser = async (req, res) => {
 const loginUser= async (req, res) => {
     try {
       const userDetails = await User.findOne({ email: req.body.email });
-      if(userdetails){
+      if(userDetails){
 
         const match = await bcrypt.compare(req.body.password, userDetails.password);
         if(match){

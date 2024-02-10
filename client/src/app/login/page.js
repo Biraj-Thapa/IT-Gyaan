@@ -6,9 +6,13 @@ import { Input } from "@nextui-org/react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
+import { addUserDetails } from "@/redux/reducerSlice/userSlice";
+import { useDispatch } from "react-redux";
+
 
 const SignInForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const SignInSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -26,6 +30,7 @@ const SignInForm = () => {
     });
     const data = await res.json();
     if (res.status == 200) {
+      dispatch(addUserDetails(data));
       router.push("/login");
     }
     toast(data.msg);
