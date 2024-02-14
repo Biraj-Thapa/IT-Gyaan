@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
 const registerNewUser = async (req, res) => {
   try {
     const existingUser = await User.findOne({ email: req.body.email });
@@ -22,24 +23,27 @@ const registerNewUser = async (req, res) => {
 }
 
     
-const loginUser= async (req, res) => {
-    try {
-      const userDetails = await User.findOne({ email: req.body.email });
-      if(userDetails){
-
+const loginUser = async(req,res)=>{
+    try{
+       const userDetails = await User.findOne({email: req.body.email})
+       if(userDetails){
         const match = await bcrypt.compare(req.body.password, userDetails.password);
+        
         if(match){
+            const token = jwt.sign({ email: req.body.email }, 'shhhhh');
             res.json({
-                msg: 'Login success'
+                userDetails,
+                msg: 'Login success',
+                token,
             })
         }else{
-            res.json({
+            res.status(403).json({
                 msg: 'Incorrect password'
             })
         }
        }else{
         res.status(403).json({
-            msg: 'Invalid email'
+            msg: 'Invalid phone number'
         })
        }
     }catch(err){
