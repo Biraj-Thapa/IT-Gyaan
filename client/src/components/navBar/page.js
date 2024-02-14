@@ -5,12 +5,15 @@ import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
 import { useSelector,useDispatch } from 'react-redux';
 import {logout} from '@/redux/reducerSlice/userSlice';
+import { useRouter } from "next/navigation";
 
 export default function App() {
-  const dispatch=useDispatch()
+  const dispatch=useDispatch();
+  const router= useRouter()
   const { isLoggedIn } = useSelector(state => state.user);
   const handleLogout=()=>{
     dispatch (logout())
+    router.push("/")
   }
 
   const LoggedInDrop = () => {
