@@ -6,6 +6,8 @@ import { Input } from "@nextui-org/react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+Link
 
 const SignupForm = () => {
   const router = useRouter();
@@ -114,9 +116,16 @@ const SignupForm = () => {
             />
             {/* Display any role-specific error here if needed */}
           </div>
-          <button className="bg-green-200 px-4 py-3 rounded-xl" type="submit">
+        
+          <button className="bg-green-300 px-4 py-3 rounded-xl" type="submit">
             Submit
           </button>
+          <div className="text-xl ">
+              Already have an account?{" "}
+              <Link href="/login" className="text-blue-900">
+                Login Now
+              </Link>
+            </div>
         </form>
       </div>
     </Layout>

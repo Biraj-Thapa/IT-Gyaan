@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import { addUserDetails } from "@/redux/reducerSlice/userSlice";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 
 const SignInForm = () => {
@@ -48,6 +49,7 @@ const SignInForm = () => {
     },
   });
   return (
+    
     <Layout>
       <h2 className="text-center text-2xl font-bold mt-5 mb-3">
         Sign In
@@ -89,6 +91,12 @@ const SignInForm = () => {
           <button className="bg-green-200 px-4 py-3 rounded-xl" type="submit">
             Log In
           </button>
+          <div className="text-xl ">
+              Don't have an account?{"  "}
+              <Link href="/register" className="text-blue-900">
+                Register Now
+              </Link>
+            </div>
         </form>
       </div>
     </Layout>
