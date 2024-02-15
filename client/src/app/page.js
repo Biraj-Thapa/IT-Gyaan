@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import Nav from '@/components/navbar/page';
 import Footer from '@/components/footer/page';
+import { Button } from '@nextui-org/react';
+import Link from 'next/link';
 
 const Home = () => (
   <div>
@@ -65,8 +67,9 @@ const Home = () => (
                 </a>
               </div>
             </div>
+          </div> <div className="flex justify-center">
+          <Button as={Link} href='/login' className="  mx-auto mt-8 mb-4 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Explore More</Button>
           </div>
-          <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Explore More</button>
         </div>
       </section>
     </main>

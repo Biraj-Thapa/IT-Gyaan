@@ -16,7 +16,7 @@ const Footer = () => {
             <FaLinkedin className="h-6 w-6" />
           </a>
         </div>
-        <p className="mt-8 text-center text-base text-gray-400">&copy; {new Date().getFullYear()} Your Blog App. All rights reserved.</p>
+        <p className="mt-8 text-center text-base text-gray-400">&copy; {new Date().getFullYear()} IT-Gyaan. All rights reserved.</p>
       </div>
     </footer>
   );
