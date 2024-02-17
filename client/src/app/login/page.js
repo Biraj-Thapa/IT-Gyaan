@@ -24,7 +24,7 @@ const SignInForm = () => {
   });
 
   const loginUser = async (values) => {
-    const res = await fetch("http://localhost:5000/login/", {
+    const res = await fetch(`http://localhost:${process.env.NEXT_PUBLIC_API_URL}/login/`, {
       method: "post",
       headers: { "content-Type": "application/json" },
       body: JSON.stringify(values),
