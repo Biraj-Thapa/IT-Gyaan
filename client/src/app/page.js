@@ -4,8 +4,21 @@ import Nav from '@/components/navbar/page';
 import Footer from '@/components/footer/page';
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
+async function getData() {
+  const res = await fetch('http://localhost:5000/posts')
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+ 
+}
 
-const Home = () => (
+const Home = async() => {
+  const {post} = await getData()
+  
+  return(
   <div>
     <Head>
       <title>IT-Gyaan - Explore IT Insights</title>
@@ -23,6 +36,21 @@ const Home = () => (
             <p className="text-lg leading-relaxed mx-auto text-gray-500">A place to share your thoughts, stories, and ideas about IT related topics</p>
           </div>
           <div className="flex flex-wrap -m-4">
+            {post.map((item)=>{
+              return (
+                <div className="lg:w-1/4 md:w-1/2 p-4">
+              <div className="bg-gray-100 p-6 rounded-lg">
+                <h2 className="text-lg text-gray-900 font-medium title-font mb-2">{item.content}</h2>
+                <p className="leading-relaxed text-base mb-4">Exploring the latest trends and technologies in cloud computing.</p>
+                <a href="#" className="text-indigo-500 inline-flex items-center">Learn More
+                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+              )
+            })}
             <div className="lg:w-1/4 md:w-1/2 p-4">
               <div className="bg-gray-100 p-6 rounded-lg">
                 <h2 className="text-lg text-gray-900 font-medium title-font mb-2">Cloud Computing</h2>
@@ -76,6 +104,6 @@ const Home = () => (
 
     <Footer />
   </div>
-);
+)};
 
 export default Home;
