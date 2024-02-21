@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import "easymde/dist/easymde.min.css";
 import { Button } from '@nextui-org/react';
+import Link from 'next/link'
 
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false });
 
@@ -19,7 +20,7 @@ const Editor = () => {
       const res = await fetch(`http://localhost:${process.env.NEXT_PUBLIC_API_URL}/posts/`, {
         method: "post",
         headers: { "content-Type": "application/json" },
-        body: JSON.stringify({ title, content }), // Include title and content in the body
+        body: JSON.stringify({ title:title,content:content }), // Include title and content in the body
       });
       // Reset the title and content after saving the post
       setTitle('');
@@ -46,8 +47,9 @@ const Editor = () => {
       />
       {/* Button to save post */}
       <div className='flex justify-center'>
-        <Button onClick={savePost} className="mt-4 bg-black text-white">Post</Button>
+        <Button onClick={savePost} as={Link} href="/home" className="mt-4 bg-black text-white">Post</Button>
       </div>
+     
     </div>
   );
 };
