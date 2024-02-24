@@ -8,8 +8,8 @@ import Link from 'next/link'
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false });
 
 const Editor = () => {
-  const [title, setTitle] = useState(''); // State for the title
-  const [content, setContent] = useState(''); // State for the content
+  const [title, setTitle] = useState(''); 
+  const [content, setContent] = useState(''); 
 
   const savePost = async () => {
     if (!title || !content) {
@@ -20,9 +20,8 @@ const Editor = () => {
       const res = await fetch(`http://localhost:${process.env.NEXT_PUBLIC_API_URL}/posts/`, {
         method: "post",
         headers: { "content-Type": "application/json" },
-        body: JSON.stringify({ title:title,content:content }), // Include title and content in the body
+        body: JSON.stringify({ title:title,content:content }), 
       });
-      // Reset the title and content after saving the post
       setTitle('');
       setContent('');
     } catch (error) {
@@ -32,7 +31,6 @@ const Editor = () => {
 
   return (
     <div>
-      {/* Title input field */}
       <input
         type="text"
         value={title}
@@ -40,12 +38,10 @@ const Editor = () => {
         placeholder="Enter title"
         className="block w-full px-4 py-2 mb-4 text-lg font-bold text-center bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
       />
-      {/* Content editor */}
       <SimpleMDE
         value={content}
         onChange={(value) => setContent(value)}
       />
-      {/* Button to save post */}
       <div className='flex justify-center'>
         <Button onClick={savePost} as={Link} href="/home" className="mt-4 bg-black text-white">Post</Button>
       </div>
