@@ -10,7 +10,10 @@ import Link from 'next/link';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+<<<<<<< HEAD
   const router = useRouter();
+=======
+>>>>>>> 5326de0cb9eb8e539a53978c78b369b7bbbd4268
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,10 +32,13 @@ const Home = () => {
     fetchData();
   }, []);
 
+<<<<<<< HEAD
   const handleViewPost = (postId) => {
     router.push(`/posts/${postId}`); // Navigate to the dynamic route for the specific post
   };
 
+=======
+>>>>>>> 5326de0cb9eb8e539a53978c78b369b7bbbd4268
   return (
     <div>
       <Head>
@@ -56,14 +62,23 @@ const Home = () => {
                   <div className="bg-gray-100 p-6 rounded-lg">
                     <h2 className="text-lg text-gray-900 font-medium title-font mb-2">{post.title}</h2>
                     <p className="leading-relaxed text-base mb-4">{post.content}</p>
+<<<<<<< HEAD
                     <Button className="text-indigo-500 inline-flex items-center" onClick={() => handleViewPost(post._id)}>Learn More</Button>
+=======
+                    <Link href={`/post/${post._id}`}>
+                      <Button className="text-indigo-500 inline-flex items-center">Learn More</Button>
+                    </Link>
+>>>>>>> 5326de0cb9eb8e539a53978c78b369b7bbbd4268
                   </div>
                 </div>
               ))}
             </div>
+<<<<<<< HEAD
             <div className="flex justify-center">
               <Button as={Link} href="/login" className="mx-auto mt-8 mb-4 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Explore More</Button>
             </div>
+=======
+>>>>>>> 5326de0cb9eb8e539a53978c78b369b7bbbd4268
           </div>
         </section>
       </main>
