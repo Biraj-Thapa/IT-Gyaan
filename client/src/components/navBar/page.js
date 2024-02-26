@@ -36,7 +36,7 @@ export default function App() {
               <p className="font-semibold">Signed in as</p>
               <p className="font-semibold">{userDetails.email}</p>
             </DropdownItem>
-            <DropdownItem key="Profile">Profile</DropdownItem>
+            <DropdownItem key="Profile" Link href="/userProfilea">Profile</DropdownItem>
             <DropdownItem key="Library">Library</DropdownItem>
             <DropdownItem key="analytics">Analytics</DropdownItem>
             <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
