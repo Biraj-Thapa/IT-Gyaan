@@ -8,10 +8,8 @@ import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { setSelectedPosts } from '@/redux/reducerSlice/postSlice';
 
-
-
 const Home = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -31,6 +29,22 @@ const Home = () => {
     fetchData();
   }, []);
 
+  const handleDelete = async (postId) => {
+    try {
+      const res = await fetch(`http://localhost:5000/posts/${postId}`, {
+        method: 'DELETE',
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to delete post');
+      }
+
+      setPosts(posts.filter(post => post._id !== postId));
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -43,26 +57,29 @@ const Home = () => {
       <main>
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
-            <div className="flex flex-col text-center w-full mb-20">
-              <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">WELCOME TO</h2>
-              <h1 className="sm:text-3xl text-4xl font-bold title-font mb-4 text-gray-900">IT-Gyaan - Explore IT Insights</h1>
-              <p className="text-lg leading-relaxed mx-auto text-gray-500">A place to share your thoughts, stories, and ideas about IT related topics</p>
+            <div className="text-center mb-20">
+              <h2 className="text-xs text-indigo-500 tracking-widest font-medium mb-1">WELCOME TO</h2>
+              <h1 className="sm:text-4xl text-5xl font-bold title-font mb-4 text-gray-900">IT-Gyaan</h1>
+              <p className="text-lg leading-relaxed mx-auto text-gray-500">Explore IT Insights and share your thoughts, stories, and ideas.</p>
             </div>
             <div className="flex flex-wrap -m-4">
               {posts.map((post) => (
-                <div key={post._id} className="lg:w-1/4 md:w-1/2 p-4">
-                  <div className="bg-gray-100 p-6 rounded-lg">
+                <div key={post._id} className="lg:w-1/3 md:w-1/2 p-4">
+                  <div className="bg-white p-6 rounded-lg shadow-md">
                     <h2 className="text-lg text-gray-900 font-medium title-font mb-2">{post.title}</h2>
                     <p className="leading-relaxed text-base mb-4">{post.content}</p>
-                    <Link href={`edit`}>
-                      <Button onClick={()=>dispatch(setSelectedPosts(post._id))}className="text-indigo-500 inline-flex items-center">Learn More</Button>
-                    </Link>
+                    <div className="flex justify-between items-center">
+                      <Link href={`edit`}>
+                        <Button onClick={() => dispatch(setSelectedPosts(post._id))} className="text-indigo-500 inline-flex items-center mr-2">Edit</Button>
+                      </Link>
+                      <Link href={`/view`}>
+                        <Button className="text-indigo-500 inline-flex items-center">View</Button>
+                      </Link>
+                      <Button onClick={() => handleDelete(post._id)} className="text-red-500 inline-flex items-center">Delete</Button>
+                    </div>
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="flex justify-center">
-              <Button as={Link} href="/login" className="  mx-auto mt-8 mb-4 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Explore More</Button>
             </div>
           </div>
         </section>
@@ -74,3 +91,4 @@ const Home = () => {
 };
 
 export default Home;
+

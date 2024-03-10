@@ -1,28 +1,15 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import "easymde/dist/easymde.min.css";
 import { Button } from '@nextui-org/react';
-import Link from 'next/link'
-import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 const SimpleMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false });
 
 const Editor = () => {
   const [title, setTitle] = useState(''); 
   const [content, setContent] = useState(''); 
-  const {selectedPostId}=useSelector(state=>state.post)
-  const fetchPost= async () =>{
-    const res= await fetch("http://localhost:5000/posts/"+selectedPostId)
-    const data= await res.json()
-     setTitle(data.post.title)
-     setContent(data.post.content)
-   }
-   useEffect(()=>{
-     fetchPost()
-    
-   },[])
-  
 
   const savePost = async () => {
     if (!title || !content) {
@@ -33,7 +20,7 @@ const Editor = () => {
       const res = await fetch(`http://localhost:${process.env.NEXT_PUBLIC_API_URL}/posts/`, {
         method: "post",
         headers: { "content-Type": "application/json" },
-        body: JSON.stringify({ title:title,content:content }), 
+        body: JSON.stringify({ title: title, content: content }), 
       });
       setTitle('');
       setContent('');
@@ -58,7 +45,6 @@ const Editor = () => {
       <div className='flex justify-center'>
         <Button onClick={savePost} as={Link} href="/home" className="mt-4 bg-black text-white">Post</Button>
       </div>
-     
     </div>
   );
 };

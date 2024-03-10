@@ -45,7 +45,7 @@ const Editor = () => {
       if (res.ok) {
         setTitle('');
         setContent('');
-        router.push('/home'); // Redirect to home page after successful post update
+        router.push('/home'); 
       } else {
         console.error('Error updating post:', res.statusText);
       }
